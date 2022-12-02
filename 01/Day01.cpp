@@ -5,9 +5,8 @@
 #include <algorithm>
 #include <numeric>
 
-constexpr auto PATH = "input"; // input, sample
-
 using uint = unsigned int;
+constexpr auto PATH = "input"; // input, sample
 
 // Devuelve un vector con las calorías ordenadas de menor a mayor
 std::vector<uint> getSortedCalories()
