@@ -13,21 +13,10 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Archivos de entrada">
-      <UniqueIdentifier>{b6843802-a4b5-4a04-94da-bd39f7cc7b04}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DayOne.cpp">
+    <ClCompile Include="Day02.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="input">
-      <Filter>Archivos de entrada</Filter>
-    </None>
-    <None Include="sample">
-      <Filter>Archivos de entrada</Filter>
-    </None>
   </ItemGroup>
 </Project>
