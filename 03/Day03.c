@@ -1,81 +1,127 @@
+// El código más sucio, menos seguro, complicado y lioso
+// que se haya visto jamás. No tiene ni una sola comprobación
+// de ningún tipo de errores, y sólo sirve exclusivamente para
+// el caso muy particular del enunciado.
+
 #include <stdlib.h>
 #include <stdio.h>
 
 #define PATH "input"
+typedef unsigned int uint;
 
-int getline(char** buffer, int* capacity, FILE* fptr)
+uint getline(char** buffer, FILE* fptr)
 {
-    if (*buffer == NULL)
-    {
-        (*buffer) = malloc(10);
-        *capacity = 10;
-        if (*buffer == NULL)
-            exit(-1);
-    }
+	(*buffer) = malloc(10);
+	size_t capacity = 10;
 
-    int n_read = 0;
-    char c;
-    while ((c = getc(fptr)) != EOF && c != '\n')
-    {
-        if (n_read == *capacity)
-        {
-            if (*capacity + 10 >= INT_MAX)
-                exit(-1);
-            *capacity = n_read + 10;
-            char* temp = realloc(*buffer, (size_t)*capacity + 1);
-            if (temp == NULL)
-                exit(-1);
-            *buffer = temp;
-        }
+	int n_read = 0;
+	char c;
+	while ((c = getc(fptr)) != EOF && c != '\n')
+	{
+		if (n_read == capacity)
+		{
+			capacity = n_read + 10;
+			char* temp = realloc(*buffer, capacity + 1);
+			*buffer = temp;
+		}
 
-        (*buffer)[n_read] = c;
-        n_read++;
-    }
+		(*buffer)[n_read] = c;
+		n_read++;
+	}
 
-    if (EOF == c && !n_read)
-        return EOF;
+	if (EOF == c)
+		return EOF;
 
-    (*buffer)[n_read] = '\0';
-    return n_read;
+	(*buffer)[n_read] = '\0';
+	return n_read;
+}
+
+uint char_to_priority(const char a) {
+	return (a - ((a <= 'Z') ? 'A' - 26 : 'a'));
 }
 
 int get_priority(const char* line, const int size)
 {
-    int saved_values[('z' - 'a' + 1) + ('Z' - 'A' + 1)] = {NULL};
+	uint saved_values[52] = { NULL };
 
-    for (int i = 0; i < size / 2; i++)
-    {
-        int value = line[i];
-        value -= (value <= 'Z') ? 'A' - 26 : 'a';
-        saved_values[value] |= 1;
-    }
-    for (int i = (size - 1); i > (size - 1) / 2; i--)
-    {
-        int value = line[i];
-        value -= (value <= 'Z') ? 'A' - 26 : 'a';
-        if (saved_values[value])
-            return value + 1;
-    }
+	for (uint i = 0; i < size / 2; i++)
+	{
+		saved_values[char_to_priority(line[i])] |= 1;
+	}
+	for (uint i = (size - 1); i > (size - 1) / 2; i--)
+	{
+		uint value = char_to_priority(line[i]);
+		if (saved_values[value])
+			return value + 1;
+	}
+}
 
-    return -1;
+uint get_across_group(const char* lineOne, const char* lineTwo, const char* lineThree) {
+	int saved_values[52] = { 0 };
+	int c;
+
+	for (int i = 0; (c = lineOne[i]) != '\0'; i++)
+		saved_values[char_to_priority(c)] |= 0b01;
+	for (int i = 0; (c = lineTwo[i]) != '\0'; i++)
+		saved_values[char_to_priority(c)] |= 0b10;
+
+	uint value;
+	for (int i = 0; (c = lineThree[i]) != '\0'; i++)
+	{
+		value = char_to_priority(c);
+		if (saved_values[value] == 0b11)
+			return value + 1;
+	}
+}
+
+uint part_one()
+{
+	FILE* fptr;
+	int a = sizeof(int);
+	fopen_s(&fptr, PATH, "r");
+
+	char* buffer = NULL;
+	int length;
+
+	uint added_priority = 0;
+
+	while ((length = getline(&buffer, fptr)) != EOF)
+	{
+		added_priority += get_priority(buffer, length);
+	}
+	fclose(fptr);
+
+	return added_priority;
+}
+
+uint part_two()
+{
+	FILE* fptr;
+	int a = sizeof(int);
+	fopen_s(&fptr, PATH, "r");
+
+	char* buffer1 = NULL;
+	char* buffer2 = NULL;
+	char* buffer3 = NULL;
+	int capacity = 0;
+
+	uint added_priority = 0;
+
+	while (getline(&buffer1, fptr) != EOF)
+	{
+		getline(&buffer2, fptr);
+		getline(&buffer3, fptr);
+		added_priority += get_across_group(buffer1, buffer2, buffer3);
+	}
+	fclose(fptr);
+
+	return added_priority;
 }
 
 int main()
 {
-    FILE* fptr;
-    int a = sizeof(int);
-    fopen_s(&fptr, PATH, "r");
-    if (fptr == NULL) return -1;
+	printf("1 - El valor de la suma de los elementos duplicados es %u\n", part_one());
+	printf("2 - El valor de la suma de las insignias es %u\n", part_two());
 
-    char* buffer = NULL;
-    int capacity = 0;
-    int added_priority = 0;
-    int length;
-    while ((length = getline(&buffer, &capacity, fptr)) != EOF)
-    {
-        added_priority += get_priority(buffer, length);
-    }
-
-    fclose(fptr);
-    return 0;
+	return 0;
 }
