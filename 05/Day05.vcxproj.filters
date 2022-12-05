@@ -26,5 +26,8 @@
     <None Include="sample">
       <Filter>Archivos de entrada</Filter>
     </None>
+    <None Include="input">
+      <Filter>Archivos de entrada</Filter>
+    </None>
   </ItemGroup>
 </Project>

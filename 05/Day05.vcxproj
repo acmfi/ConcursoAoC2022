@@ -131,6 +131,7 @@
     <ClCompile Include="Day05.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="input" />
     <None Include="sample">
       <FileType>Text</FileType>
     </None>
