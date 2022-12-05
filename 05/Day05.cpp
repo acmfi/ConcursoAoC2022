@@ -116,3 +116,6 @@ int main()
     std::cout << "2 - La parte superior de las pilas ordenando a la vez es "
         << moveAll(crates, instructions) << '\n';
 }
+
+// Primer método: RLFNRTNFB
+// Segundo método: MHQTLJRLB
