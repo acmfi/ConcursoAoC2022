@@ -40,7 +40,7 @@ void loadData(
         }
     }
 
-    for(int i = 0; i < crates.size(); i++)
+    for (int i = 0; i < crates.size(); i++)
         std::reverse(std::begin(crates[i]), std::end(crates[i]));
 
     getline(input, line);
@@ -58,11 +58,11 @@ void loadData(
         stream.ignore(4);
         stream >> to;
 
-        instructions.push_back({from - 1, to - 1, places});
+        instructions.push_back({ from - 1, to - 1, places });
     }
 }
 
-char* moveOneByOne(std::vector<std::vector<char>>& crates, std::vector<Instruction> instructions)
+char* moveOneByOne(std::vector<std::vector<char>> crates, std::vector<Instruction> instructions)
 {
     for (Instruction ins : instructions)
     {
@@ -83,16 +83,17 @@ char* moveOneByOne(std::vector<std::vector<char>>& crates, std::vector<Instructi
     return buffer;
 }
 
-char* moveAll(std::vector<std::vector<char>>& crates, std::vector<Instruction> instructions)
+char* moveAll(std::vector<std::vector<char>> crates, std::vector<Instruction> instructions)
 {
-    for (Instruction i : instructions)
+    for (Instruction ins : instructions)
     {
-        for (auto it = std::end(crates[i.from]) - i.places; it < std::end(crates[i.from]); it++)
+        for (uint i = crates[ins.from].size() - ins.places; i < crates[ins.from].size(); i++)
         {
-            crates[i.to].push_back(*it);
+            crates[ins.to].push_back(crates[ins.from][i]);
         }
 
-        crates[i.from].erase(std::end(crates[i.from]) - i.places, std::end(crates[i.from]));
+        for (uint i = 0; i < ins.places; i++)
+            crates[ins.from].pop_back();
     }
 
     // Código de C que no debería estar aquí
@@ -109,6 +110,9 @@ int main()
     std::vector <Instruction> instructions;
     loadData(crates, instructions);
 
-    std::cout << "La parte superior de las pilas es " << moveOneByOne(crates, instructions);
-    return 0;
+    std::cout << "1 - La parte superior de las pilas ordenando de una en una es "
+        << moveOneByOne(crates, instructions) << '\n';
+
+    std::cout << "2 - La parte superior de las pilas ordenando a la vez es "
+        << moveAll(crates, instructions) << '\n';
 }
