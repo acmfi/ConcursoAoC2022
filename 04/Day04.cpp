@@ -70,8 +70,8 @@ uint getAllOverlapped()
 
 int main()
 {
-	std::cout << "El total de rangos contenidos es " << getAllContained() << '\n';
-	std::cout << "El total de rangos que se superponen es " << getAllOverlapped() << '\n';
+	std::cout << "1 - El total de rangos contenidos es " << getAllContained() << '\n';
+	std::cout << "2 - El total de rangos que se superponen es " << getAllOverlapped() << '\n';
 }
 
 // Primera parte: 444
