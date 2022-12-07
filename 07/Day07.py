@@ -66,8 +66,8 @@ def part_two(s):
    
 
 s = get_files(open(PATH).read().splitlines())
-print('1 - La suma del tamaño de directorios es ', part_one(s))
-print('2 - El tamaño liberado es ', part_two(s))
+print('1 - La suma del tamaño de directorios es', part_one(s))
+print('2 - El tamaño liberado es', part_two(s))
 
 
 # Suma tamaños: 1667443
