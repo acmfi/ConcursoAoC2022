@@ -19,6 +19,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Día 7", "07\Día 7.pyproj"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Día 8", "08\Day08.vcxproj", "{777DA7E4-8CF0-4363-9C2C-08522EA63CBE}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Día 9", "09\Día 9.pyproj", "{67C6B2A7-5F47-4D64-9594-860F8C9A8114}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +121,12 @@ Global
 		{777DA7E4-8CF0-4363-9C2C-08522EA63CBE}.Release|x64.Build.0 = Release|x64
 		{777DA7E4-8CF0-4363-9C2C-08522EA63CBE}.Release|x86.ActiveCfg = Release|Win32
 		{777DA7E4-8CF0-4363-9C2C-08522EA63CBE}.Release|x86.Build.0 = Release|Win32
+		{67C6B2A7-5F47-4D64-9594-860F8C9A8114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67C6B2A7-5F47-4D64-9594-860F8C9A8114}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{67C6B2A7-5F47-4D64-9594-860F8C9A8114}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{67C6B2A7-5F47-4D64-9594-860F8C9A8114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67C6B2A7-5F47-4D64-9594-860F8C9A8114}.Release|x64.ActiveCfg = Release|Any CPU
+		{67C6B2A7-5F47-4D64-9594-860F8C9A8114}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
