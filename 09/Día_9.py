@@ -1,4 +1,4 @@
-# input, sample, sample_2
+# input, sample
 PATH = 'input'
 
 def move_head(direction, pos):
