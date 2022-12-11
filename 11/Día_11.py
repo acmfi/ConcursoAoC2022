@@ -48,7 +48,7 @@ def load_monkey_data(input):
 def calculate_monkey_business(input, rounds, div):
     monkeys = load_monkey_data(input)
 
-    # mcm de todos los módulos
+    # mcm de todos los mÃ³dulos
     mod = 1
     for monkey in monkeys:
         mod *= monkey['mod']
