@@ -66,3 +66,6 @@ def count_for_len(input, rope_length):
 input = (open(PATH).read().splitlines())
 print('1 - El número de casillas visitadas es', count_visited(input))
 print('2 - Las casillas visitadas por la cuerda de longitud 10 es', count_for_len(input, 10))
+
+# Casillas visitadas: 5779
+# Casillas cuerda larga: 2331
